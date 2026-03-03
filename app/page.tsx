@@ -1,56 +1,100 @@
+import Image from "next/image";
+
+const SUBJECTS = [
+  {
+    key: "korean",
+    title: "국어",
+    subtitle: "(해법독서논술)",
+    href: "/korean",
+    tone: "indigo",
+  },
+  {
+    key: "english",
+    title: "영어",
+    subtitle: "(준비중)",
+    href: "/english",
+    tone: "emerald",
+  },
+] as const;
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center p-6">
-      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <section className="space-y-6">
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900">
-            SNCWON
-          </h1>
-          <p className="text-gray-600 text-base md:text-lg">
-            1인 교습소 통합 관리 웹앱 · 트랙을 선택해주세요
-          </p>
+    <main className="min-h-screen bg-white">
+      <div className="mx-auto flex min-h-screen max-w-md flex-col items-center justify-center px-5 py-10 text-center md:max-w-4xl">
+        {/* Logo */}
+        <div className="mb-3 flex items-center justify-center">
+          {/* 로고 파일: public/logo.png */}
+          <Image
+            src="/logo.png"
+            alt="SNCWON"
+            width={500}
+            height={500}
+            className="h-20 w-auto object-contain md:h-75"
+            priority
+          />
+        </div>
 
-          <div className="grid grid-cols-1 gap-4">
-            <a
-              href="/korean"
-              className="group rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow-sm hover:shadow-md transition"
-            >
-              <div className="text-sm text-gray-500">국어</div>
-              <div className="mt-1 text-2xl font-extrabold text-indigo-700">
-                국어해법 (논술)
-              </div>
-              <div className="mt-2 text-sm text-gray-600">
-                숙제 · 출결 · 학생관리
-              </div>
-              <div className="mt-4 text-xs text-gray-500 group-hover:text-gray-700 transition">
-                선택하기 →
-              </div>
-            </a>
+        {/* Brand */}
+        <h1 className="text-4xl font-black tracking-tight text-slate-250 md:text-5xl">
+          마곡 SnC
+        </h1>
+        <div className="mt-2 text-sm font-semibold text-blue-600 md:text-base">
+          
+        </div>
 
-            <a
-              href="/english"
-              className="group rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow-sm hover:shadow-md transition"
-            >
-              <div className="text-sm text-gray-500">영어</div>
-              <div className="mt-1 text-2xl font-extrabold text-green-700">
-                영어
-              </div>
-              <div className="mt-2 text-sm text-gray-600">
-                (다음 단계에서 구현)
-              </div>
-              <div className="mt-4 text-xs text-gray-500 group-hover:text-gray-700 transition">
-                선택하기 →
-              </div>
-            </a>
-          </div>
-        </section>
+        
+        {/* Cards */}
+        <div className="mt-10 grid w-full grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
+          {SUBJECTS.map((s) => {
+            const isKorean = s.tone === "indigo";
 
-        <section className="rounded-3xl bg-white/70 backdrop-blur border border-white/60 shadow-sm p-10 flex items-center justify-center min-h-[280px]">
-          <div className="text-center">
-            <div className="text-5xl font-black text-gray-900">SNCWON</div>
-            <div className="mt-3 text-gray-600">국어해법 · 영어</div>
-          </div>
-        </section>
+            // Pastel tones
+            const border = isKorean ? "border-indigo-300" : "border-emerald-300";
+            const bg = isKorean
+              ? "bg-indigo-50 hover:bg-indigo-100/60"
+              : "bg-emerald-50 hover:bg-emerald-100/60";
+
+            const title = isKorean ? "text-indigo-800" : "text-emerald-800";
+            const sub = isKorean ? "text-indigo-700/80" : "text-emerald-700/80";
+
+            return (
+              <a
+                key={s.key}
+                href={s.href}
+                className={[
+                  "rounded-2xl border p-7 text-left shadow-sm transition",
+                  "active:scale-[0.985]",
+                  "hover:shadow-md",
+                  border,
+                  bg,
+                ].join(" ")}
+              >
+                <div className="flex items-end gap-2">
+                  <div className={`text-3xl font-extrabold ${title}`}>
+                    {s.title}
+                  </div>
+                  <div className={`text-base font-bold ${sub}`}>
+                    {s.subtitle}
+                  </div>
+                </div>
+
+                <div className="mt-6 text-lg font-extrabold text-slate-800">
+                  
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* 안내 문구: 카드 아래로 이동 */}
+        <p className="mt-8 text-lg font-semibold text-slate-1200">
+          과목을 선택해주세요
+        </p>
+
+        {/* Version */}
+        <p className="mt-3 text-xs font-medium text-slate-400">
+          version 1.01
+        </p>
       </div>
     </main>
   );
