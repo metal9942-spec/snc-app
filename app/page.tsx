@@ -35,12 +35,21 @@ export default function Home() {
         </div>
 
         {/* Brand */}
-        <h1 className="text-4xl font-black tracking-tight text-slate-250 md:text-5xl">
-          마곡 SnC
-        </h1>
-        <div className="mt-2 text-sm font-semibold text-blue-600 md:text-base">
-          
-        </div>
+<h1 className="text-4xl font-black tracking-tight text-slate-800 md:text-5xl">
+  마곡 SnC 학원
+</h1>
+
+<p className="mt-3 text-base font-semibold text-gray-500">
+  초등 · 중등 전문 국어 · 영어 학원
+</p>
+
+<p className="mt-1 text-sm text-gray-400">
+  맞춤형 학습 관리 · 독서논술 · 영어 집중 교육
+</p>
+
+<div className="mt-2 text-sm font-semibold text-blue-600 md:text-base">
+  📞 상담 문의 환영 (전화 / 카톡 가능)
+</div>
 
         
         {/* Cards */}
